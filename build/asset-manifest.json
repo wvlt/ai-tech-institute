@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/ai-tech-institute/static/css/main.022c49d1.css",
-    "main.js": "/ai-tech-institute/static/js/main.4bc9deb4.js",
-    "static/media/image_1.jpeg": "/ai-tech-institute/static/media/image_1.a67059f11772e475b443.jpeg",
-    "static/media/logo.png": "/ai-tech-institute/static/media/logo.3a8c0fde837047986c2b.png",
-    "index.html": "/ai-tech-institute/index.html",
-    "main.022c49d1.css.map": "/ai-tech-institute/static/css/main.022c49d1.css.map",
-    "main.4bc9deb4.js.map": "/ai-tech-institute/static/js/main.4bc9deb4.js.map"
+    "main.css": "/static/css/main.022c49d1.css",
+    "main.js": "/static/js/main.1e86a514.js",
+    "static/media/image_1.jpeg": "/static/media/image_1.a67059f11772e475b443.jpeg",
+    "static/media/logo.png": "/static/media/logo.3a8c0fde837047986c2b.png",
+    "index.html": "/index.html",
+    "main.022c49d1.css.map": "/static/css/main.022c49d1.css.map",
+    "main.1e86a514.js.map": "/static/js/main.1e86a514.js.map"
   },
   "entrypoints": [
     "static/css/main.022c49d1.css",
-    "static/js/main.4bc9deb4.js"
+    "static/js/main.1e86a514.js"
   ]
 }
