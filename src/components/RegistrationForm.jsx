@@ -18,17 +18,18 @@ const RegistrationForm = ({ selectedCourse }) => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setFormStatus('Sending...');
+      e.preventDefault();
+      setFormStatus('Sending...');
+    
+      try {
+        await axios.post('http://localhost:5001/send-email', formData);
+        setFormStatus('Enquiry sent successfully!');
+      } catch (error) {
+        console.error('Error sending email:', error);
+        setFormStatus('There was an error sending your enquiry. Please try again.');
+      }
+    };
 
-    try {
-      const response = await axios.post('http://localhost:5001/send-email', formData);
-      setFormStatus('Enquiry sent successfully!');
-    } catch (error) {
-      console.error('Error sending email:', error);
-      setFormStatus('There was an error sending your enquiry. Please try again.');
-    }
-  };
 
   return (
     <div className="bg-white p-6 rounded shadow-md">
