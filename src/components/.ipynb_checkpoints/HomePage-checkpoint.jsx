@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import image1 from '../assets/image_1.jpeg'; // Import the image
+import image1 from '../assets/image_1.jpeg';
 
 const HomePage = () => {
   return (
@@ -16,17 +16,25 @@ const HomePage = () => {
       <section className="mt-12">
         <h2 className="text-2xl font-semibold text-green mb-4">Our Courses</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <Link to="/courses#bootcamps" className="block p-6 bg-white rounded shadow-md hover:bg-yellowCream">
-            <h3 className="text-xl font-bold text-green mb-2">24-Week Bootcamps</h3>
-            <p>Immersive programs for in-depth learning.</p>
+          <Link to="/courses#one-day" className="block p-6 bg-white rounded shadow-md hover:bg-yellowCream">
+            <h3 className="text-xl font-bold text-green mb-2">1-Day Courses</h3>
+            <p>Intensive one-day sessions.</p>
           </Link>
-          <Link to="/courses#skillups" className="block p-6 bg-white rounded shadow-md hover:bg-yellowCream">
+          <Link to="/courses#one-week" className="block p-6 bg-white rounded shadow-md hover:bg-yellowCream">
+            <h3 className="text-xl font-bold text-green mb-2">1-Week Courses</h3>
+            <p>Comprehensive one-week programs.</p>
+          </Link>
+          <Link to="/courses#six-week" className="block p-6 bg-white rounded shadow-md hover:bg-yellowCream">
+            <h3 className="text-xl font-bold text-green mb-2">6-Week Courses</h3>
+            <p>Accelerated learning.</p>
+          </Link>
+          <Link to="/courses#twelve-week" className="block p-6 bg-white rounded shadow-md hover:bg-yellowCream">
             <h3 className="text-xl font-bold text-green mb-2">12-Week Skill-ups</h3>
             <p>Advance your AI skills.</p>
           </Link>
-          <Link to="/courses#shortcourses" className="block p-6 bg-white rounded shadow-md hover:bg-yellowCream">
-            <h3 className="text-xl font-bold text-green mb-2">12-Week Short Courses</h3>
-            <p>Quick learning programs.</p>
+          <Link to="/courses#twenty-four-week" className="block p-6 bg-white rounded shadow-md hover:bg-yellowCream">
+            <h3 className="text-xl font-bold text-green mb-2">24-Week Bootcamps</h3>
+            <p>Immersive programs for in-depth learning.</p>
           </Link>
         </div>
       </section>

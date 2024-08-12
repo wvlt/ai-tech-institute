@@ -4,7 +4,8 @@ import RegistrationForm from './RegistrationForm';
 
 const ContactPage = () => {
   const location = useLocation();
-  const { title } = location.state || {};
+  const params = new URLSearchParams(location.search);
+  const selectedCourse = params.get('course') || '';
 
   return (
     <div className="container mx-auto px-6 py-12">
@@ -13,11 +14,11 @@ const ContactPage = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="bg-white p-6 rounded shadow-md">
           <h2 className="text-2xl font-bold mb-4">Contact Details</h2>
-          <p className="mb-4"><strong>Phone:</strong> 0426026538</p>
-          <p className="mb-4"><strong>Email:</strong> <a href="mailto:admin@aitechinstitute.io" className="text-blue-500">admin@aitechinstitute.io</a></p>
+          <p className="mb-4"><strong>Phone:</strong> 0422 222 707</p>
+          <p className="mb-4"><strong>Email:</strong> <a href="mailto:info@aitechinstitute.io" className="text-blue-500">info@aitechinstitute.io</a></p>
           <p className="mb-4"><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/company/104118811/admin/dashboard/" className="text-blue-500" target="_blank" rel="noopener noreferrer">AI Tech Institute LinkedIn</a></p>
         </div>
-        <RegistrationForm selectedCourse={title} />
+        <RegistrationForm selectedCourse={selectedCourse} />
       </div>
     </div>
   );

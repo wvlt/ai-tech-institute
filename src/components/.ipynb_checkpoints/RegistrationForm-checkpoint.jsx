@@ -1,64 +1,97 @@
 import React, { useState } from 'react';
-
-const courses = [
-  { title: 'AI and Data Science Fundamentals', duration: '24 weeks', nextStartDate: 'September 1, 2024' },
-  { title: 'AI Engineering Advanced', duration: '12 weeks', nextStartDate: 'October 15, 2024' },
-  { title: 'Python Developer Course', duration: '12 weeks', nextStartDate: 'October 15, 2024' },
-  { title: 'ML Deployment Advanced', duration: '12 weeks', nextStartDate: 'November 5, 2024' }
-];
+import axios from 'axios';
 
 const RegistrationForm = ({ selectedCourse }) => {
-  const [formState, setFormState] = useState({
+  const [formData, setFormData] = useState({
     name: '',
     email: '',
-    phone: '',
-    course: selectedCourse || courses[0].title,
+    course: selectedCourse || '',
     message: ''
   });
+  const [formStatus, setFormStatus] = useState('');
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormState({
-      ...formState,
-      [name]: value
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formState);
-    // Add form submission logic here
+    setFormStatus('Sending...');
+
+    try {
+      const response = await axios.post('http://localhost:5001/send-email', formData);
+      setFormStatus('Enquiry sent successfully!');
+    } catch (error) {
+      console.error('Error sending email:', error);
+      setFormStatus('There was an error sending your enquiry. Please try again.');
+    }
   };
 
   return (
-    <form className="bg-gray-100 p-6 rounded shadow-md" onSubmit={handleSubmit}>
+    <div className="bg-white p-6 rounded shadow-md">
       <h2 className="text-2xl font-bold mb-4">Register Your Interest</h2>
-      <div className="mb-4">
-        <label className="block text-green mb-2" htmlFor="name">Name</label>
-        <input className="w-full p-2 border rounded" type="text" id="name" name="name" value={formState.name} onChange={handleChange} required />
-      </div>
-      <div className="mb-4">
-        <label className="block text-green mb-2" htmlFor="email">Email</label>
-        <input className="w-full p-2 border rounded" type="email" id="email" name="email" value={formState.email} onChange={handleChange} required />
-      </div>
-      <div className="mb-4">
-        <label className="block text-green mb-2" htmlFor="phone">Phone</label>
-        <input className="w-full p-2 border rounded" type="tel" id="phone" name="phone" value={formState.phone} onChange={handleChange} required />
-      </div>
-      <div className="mb-4">
-        <label className="block text-green mb-2" htmlFor="course">Course</label>
-        <select className="w-full p-2 border rounded" id="course" name="course" value={formState.course} onChange={handleChange} required>
-          {courses.map((course, index) => (
-            <option key={index} value={course.title}>{course.title}</option>
-          ))}
-        </select>
-      </div>
-      <div className="mb-4">
-        <label className="block text-green mb-2" htmlFor="message">Message</label>
-        <textarea className="w-full p-2 border rounded" id="message" name="message" value={formState.message} onChange={handleChange} required></textarea>
-      </div>
-      <button className="bg-green text-white px-4 py-2 rounded hover:bg-yellowCream">Submit</button>
-    </form>
+      <form onSubmit={handleSubmit}>
+        <div className="mb-4">
+          <label className="block text-green font-bold mb-2" htmlFor="name">Name</label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            value={formData.name}
+            onChange={handleChange}
+            className="w-full px-3 py-2 border rounded"
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-green font-bold mb-2" htmlFor="email">Email</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            value={formData.email}
+            onChange={handleChange}
+            className="w-full px-3 py-2 border rounded"
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-green font-bold mb-2" htmlFor="course">Course</label>
+          <select
+            name="course"
+            id="course"
+            value={formData.course}
+            onChange={handleChange}
+            className="w-full px-3 py-2 border rounded"
+            required
+          >
+            <option value="">Select a course</option>
+            <option value="24-Week Bootcamps">24-Week Bootcamps</option>
+            <option value="12-Week Skill-ups">12-Week Skill-ups</option>
+            <option value="12-Week Short Courses">12-Week Short Courses</option>
+            <option value="1-Day Courses">1-Day Courses</option>
+            <option value="1-Week Courses">1-Week Courses</option>
+            <option value="6-Week Courses">6-Week Courses</option>
+          </select>
+        </div>
+        <div className="mb-4">
+          <label className="block text-green font-bold mb-2" htmlFor="message">Message</label>
+          <textarea
+            name="message"
+            id="message"
+            value={formData.message}
+            onChange={handleChange}
+            className="w-full px-3 py-2 border rounded"
+            required
+          />
+        </div>
+        <button type="submit" className="bg-green text-white px-4 py-2 rounded hover:bg-yellowCream hover:text-green">Send Enquiry</button>
+      </form>
+      {formStatus && <p className="mt-4 text-green">{formStatus}</p>}
+    </div>
   );
 };
 
