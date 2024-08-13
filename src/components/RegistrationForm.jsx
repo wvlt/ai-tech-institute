@@ -22,11 +22,11 @@ const RegistrationForm = ({ selectedCourse }) => {
     setFormStatus('Sending...');
 
     try {
-      const response = await axios.post('http://localhost:5001/send-email', formData);
+      await axios.post('http://localhost:5001/send-email', formData);
       setFormStatus('Enquiry sent successfully!');
     } catch (error) {
       console.error('Error sending email:', error);
-      setFormStatus('There was an error sending your enquiry. Please send us an email instead at info@aitechinstitute.io');
+      setFormStatus('There was an error sending your enquiry. Please send us an email instead info@aitechinstitute.io');
     }
   };
 
@@ -35,7 +35,7 @@ const RegistrationForm = ({ selectedCourse }) => {
       <h2 className="text-2xl font-bold mb-4">Register Your Interest</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
-          <label className="block text-theme-color3 font-bold mb-2" htmlFor="name">Name</label>
+          <label className="block text-green font-bold mb-2" htmlFor="name">Name</label>
           <input
             type="text"
             name="name"
@@ -47,7 +47,7 @@ const RegistrationForm = ({ selectedCourse }) => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-theme-color3 font-bold mb-2" htmlFor="email">Email</label>
+          <label className="block text-green font-bold mb-2" htmlFor="email">Email</label>
           <input
             type="email"
             name="email"
@@ -59,7 +59,7 @@ const RegistrationForm = ({ selectedCourse }) => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-theme-color3 font-bold mb-2" htmlFor="course">Course</label>
+          <label className="block text-green font-bold mb-2" htmlFor="course">Course</label>
           <select
             name="course"
             id="course"
@@ -78,7 +78,7 @@ const RegistrationForm = ({ selectedCourse }) => {
           </select>
         </div>
         <div className="mb-4">
-          <label className="block text-theme-color3 font-bold mb-2" htmlFor="message">Message</label>
+          <label className="block text-green font-bold mb-2" htmlFor="message">Message</label>
           <textarea
             name="message"
             id="message"
@@ -88,9 +88,9 @@ const RegistrationForm = ({ selectedCourse }) => {
             required
           />
         </div>
-        <button type="submit" className="bg-theme-color1 text-white px-4 py-2 rounded hover:bg-theme-color2 hover:text-theme-color1">Send Enquiry</button>
+        <button type="submit" className="bg-green text-white px-4 py-2 rounded hover:bg-yellowCream hover:text-green">Send Enquiry</button>
       </form>
-      {formStatus && <p className="mt-4 text-theme-color3">{formStatus}</p>}
+      {formStatus && <p className="mt-4 text-green">{formStatus}</p>}
     </div>
   );
 };
