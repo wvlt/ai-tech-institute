@@ -1,59 +1,59 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import image1 from '../assets/image_1.jpeg';
+import image1 from '../assets/FAN2016674.JPG';
 
 const HomePage = () => {
   return (
-    <div className="container mx-auto px-6 py-12">
-      <section className="text-center bg-yellowCream p-6 rounded shadow-md">
-        <h1 className="text-4xl font-bold text-green mb-4">Welcome to AI Tech Institute</h1>
-        <p className="text-lg text-black mb-6">Learn AI from the experts at all levels, from beginner to advanced. Join our bootcamps, skill-up sessions, and short courses to master AI skills.</p>
+    <div className="container mx-auto px-6 py-12 text-center">
+      <section className="hero-section bg-theme-color1 text-white py-20">
+        <h1 className="text-5xl font-bold mb-4">Find the best AI courses for your next leap</h1>
+        <p className="text-lg mb-8">A curated directory of courses and resources for building AI skills.</p>
         <Link to="/contact">
-          <button className="bg-green text-white px-4 py-2 rounded hover:bg-yellowCream hover:text-green">Get Started</button>
+          <button className="bg-white text-theme-color1 px-6 py-3 rounded hover:bg-theme-color2 hover:text-theme-color1">Get Started</button>
         </Link>
       </section>
 
-      <section className="mt-12">
-        <h2 className="text-2xl font-semibold text-black mb-4">Our Courses</h2>
+      <section className="mt-12 bg-white p-6 rounded shadow-md">
+        <h2 className="text-4xl font-semibold text-theme-color3 mb-6">Our Courses</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <Link to="/courses#one-day" className="block p-6 bg-white rounded shadow-md hover:scale-105 transition-transform">
-            <h3 className="text-xl font-bold text-green mb-2">1-Day Courses</h3>
-            <p className="text-black">Intensive one-day sessions.</p>
+          <Link to="/courses#one-day" className="block p-6 bg-white rounded shadow-md transform hover:scale-102 transition-transform duration-200">
+            <h3 className="text-2xl font-bold text-theme-color1 mb-2">1-Day Courses</h3>
+            <p className="text-theme-color3">Intensive one-day sessions.</p>
           </Link>
-          <Link to="/courses#one-week" className="block p-6 bg-white rounded shadow-md hover:scale-105 transition-transform">
-            <h3 className="text-xl font-bold text-green mb-2">1-Week Courses</h3>
-            <p className="text-black">Comprehensive one-week programs.</p>
+          <Link to="/courses#one-week" className="block p-6 bg-white rounded shadow-md transform hover:scale-102 transition-transform duration-200">
+            <h3 className="text-2xl font-bold text-theme-color1 mb-2">1-Week Courses</h3>
+            <p className="text-theme-color3">Comprehensive one-week programs.</p>
           </Link>
-          <Link to="/courses#six-week" className="block p-6 bg-white rounded shadow-md hover:scale-105 transition-transform">
-            <h3 className="text-xl font-bold text-green mb-2">6-Week Courses</h3>
-            <p className="text-black">Accelerated learning.</p>
+          <Link to="/courses#six-week" className="block p-6 bg-white rounded shadow-md transform hover:scale-102 transition-transform duration-200">
+            <h3 className="text-2xl font-bold text-theme-color1 mb-2">6-Week Courses</h3>
+            <p className="text-theme-color3">Accelerated learning.</p>
           </Link>
-          <Link to="/courses#twelve-week" className="block p-6 bg-white rounded shadow-md hover:scale-105 transition-transform">
-            <h3 className="text-xl font-bold text-green mb-2">12-Week Skill-ups</h3>
-            <p className="text-black">Advance your AI skills.</p>
+          <Link to="/courses#twelve-week" className="block p-6 bg-white rounded shadow-md transform hover:scale-102 transition-transform duration-200">
+            <h3 className="text-2xl font-bold text-theme-color1 mb-2">12-Week Skill-ups</h3>
+            <p className="text-theme-color3">Advance your AI skills.</p>
           </Link>
-          <Link to="/courses#twenty-four-week" className="block p-6 bg-white rounded shadow-md hover:scale-105 transition-transform">
-            <h3 className="text-xl font-bold text-green mb-2">24-Week Bootcamps</h3>
-            <p className="text-black">Immersive programs for in-depth learning.</p>
+          <Link to="/courses#twenty-four-week" className="block p-6 bg-white rounded shadow-md transform hover:scale-102 transition-transform duration-200">
+            <h3 className="text-2xl font-bold text-theme-color1 mb-2">24-Week Bootcamps</h3>
+            <p className="text-theme-color3">Immersive programs for in-depth learning.</p>
           </Link>
         </div>
       </section>
 
-      <section className="mt-12 flex flex-col md:flex-row bg-white p-6 rounded shadow-md">
+      <section className="mt-12 bg-white p-6 rounded shadow-md flex flex-col md:flex-row">
         <div className="md:w-1/3">
           <img src={image1} alt="Course Delivery" className="w-full h-auto rounded" />
         </div>
-        <div className="md:w-2/3 md:pl-6 mt-4 md:mt-0">
-          <h2 className="text-2xl font-semibold text-black mb-4">Course Delivery Methods</h2>
-          <p className="text-lg text-black">
+        <div className="md:w-2/3 md:pl-6 mt-4 md:mt-0 text-left">
+          <h2 className="text-3xl font-semibold text-theme-color1 mb-4">Course Delivery Methods</h2>
+          <p className="text-lg text-theme-color3">
             At AI Tech Institute, we offer flexible course delivery methods to suit your learning preferences and schedule. Our courses can be taken:
           </p>
-          <ul className="list-disc list-inside text-lg text-black mt-4">
+          <ul className="list-disc list-inside text-lg text-theme-color3 mt-4">
             <li><strong>Online:</strong> Participate from anywhere in the world with our comprehensive online courses.</li>
             <li><strong>In-person:</strong> Join us at our campus for face-to-face learning and hands-on experience.</li>
             <li><strong>Hybrid:</strong> Enjoy the best of both worlds with our hybrid model, combining online and in-person sessions.</li>
           </ul>
-          <p className="text-lg text-black mt-4">
+          <p className="text-lg text-theme-color3 mt-4">
             Our goal is to provide a flexible and supportive learning environment that meets the needs of all our students.
           </p>
         </div>

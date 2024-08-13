@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import CourseTile from './CourseTile';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 
 const CoursesPage = () => {
   const [openCourse, setOpenCourse] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -27,7 +31,7 @@ const CoursesPage = () => {
           'Basic Machine Learning Concepts',
           'Real-world AI Applications'
         ],
-        nextStartDate: 'September 1, 2024'
+        nextStartDate: new Date('2024-09-01')
       }
     ],
     oneWeek: [
@@ -41,7 +45,7 @@ const CoursesPage = () => {
           'Data Visualization',
           'Introduction to Machine Learning'
         ],
-        nextStartDate: 'October 15, 2024'
+        nextStartDate: new Date('2024-10-15')
       }
     ],
     sixWeek: [
@@ -55,7 +59,7 @@ const CoursesPage = () => {
           'Unsupervised Learning',
           'Model Evaluation and Tuning'
         ],
-        nextStartDate: 'November 5, 2024'
+        nextStartDate: new Date('2024-11-05')
       }
     ],
     twelveWeek: [
@@ -73,7 +77,7 @@ const CoursesPage = () => {
           'AI Ethics and Governance',
           'Capstone Project'
         ],
-        nextStartDate: 'October 15, 2024'
+        nextStartDate: new Date('2024-10-15')
       },
       {
         title: 'Python Developer Course',
@@ -89,7 +93,7 @@ const CoursesPage = () => {
           'Automating Tasks with Python',
           'Project Work and Case Studies'
         ],
-        nextStartDate: 'October 15, 2024'
+        nextStartDate: new Date('2024-10-15')
       }
     ],
     twentyFourWeek: [
@@ -111,7 +115,7 @@ const CoursesPage = () => {
           'Introduction to Deep Learning',
           'Project Work and Case Studies'
         ],
-        nextStartDate: 'September 1, 2024'
+        nextStartDate: new Date('2024-09-01')
       }
     ]
   };
@@ -120,95 +124,115 @@ const CoursesPage = () => {
     setOpenCourse(openCourse === courseTitle ? null : courseTitle);
   };
 
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
+
   return (
-    <div className="container mx-auto px-6 py-12">
-      <h1 className="text-3xl font-bold mb-4 text-green">Courses</h1>
-      <p className="text-md mb-6 text-black">Explore our courses and choose the one that best fits your needs.</p>
+    <div className="container mx-auto px-6 py-12 flex flex-col md:flex-row">
+      <div className="flex-1">
+        <h1 className="text-3xl font-bold mb-4 text-theme-color1">Courses</h1>
+        <p className="text-md mb-6 text-theme-color3">Explore our courses and choose the one that best fits your needs.</p>
 
-      <section id="one-day" className="mb-12 bg-gray-100 p-6 rounded border">
-        <h2 className="text-2xl font-bold mb-4 text-green">1-Day Courses</h2>
-        {courses.oneDay.map((course, index) => (
-          <CourseTile
-            key={index}
-            title={course.title}
-            duration={course.duration}
-            description={course.description}
-            outcomes={course.outcomes}
-            topics={course.topics}
-            isOpen={openCourse === course.title}
-            onClick={() => handleTileClick(course.title)}
-            nextStartDate={course.nextStartDate}
-          />
-        ))}
-      </section>
+        <button
+          onClick={() => setIsCalendarOpen(!isCalendarOpen)}
+          className="bg-theme-color1 text-white px-4 py-2 rounded hover:bg-theme-color2 hover:text-theme-color1 mb-6"
+        >
+          {isCalendarOpen ? 'Close Calendar' : 'Open Calendar'}
+        </button>
 
-      <section id="one-week" className="mb-12 bg-gray-100 p-6 rounded border">
-        <h2 className="text-2xl font-bold mb-4 text-green">1-Week Courses</h2>
-        {courses.oneWeek.map((course, index) => (
-          <CourseTile
-            key={index}
-            title={course.title}
-            duration={course.duration}
-            description={course.description}
-            outcomes={course.outcomes}
-            topics={course.topics}
-            isOpen={openCourse === course.title}
-            onClick={() => handleTileClick(course.title)}
-            nextStartDate={course.nextStartDate}
-          />
-        ))}
-      </section>
+        <section id="one-day" className="mb-12 bg-gray-100 p-6 rounded border">
+          <h2 className="text-2xl font-bold mb-4 text-theme-color1">1-Day Courses</h2>
+          {courses.oneDay.map((course, index) => (
+            <CourseTile
+              key={index}
+              title={course.title}
+              duration={course.duration}
+              description={course.description}
+              outcomes={course.outcomes}
+              topics={course.topics}
+              isOpen={openCourse === course.title}
+              onClick={() => handleTileClick(course.title)}
+              nextStartDate={course.nextStartDate}
+            />
+          ))}
+        </section>
 
-      <section id="six-week" className="mb-12 bg-gray-100 p-6 rounded border">
-        <h2 className="text-2xl font-bold mb-4 text-green">6-Week Courses</h2>
-        {courses.sixWeek.map((course, index) => (
-          <CourseTile
-            key={index}
-            title={course.title}
-            duration={course.duration}
-            description={course.description}
-            outcomes={course.outcomes}
-            topics={course.topics}
-            isOpen={openCourse === course.title}
-            onClick={() => handleTileClick(course.title)}
-            nextStartDate={course.nextStartDate}
-          />
-        ))}
-      </section>
+        <section id="one-week" className="mb-12 bg-gray-100 p-6 rounded border">
+          <h2 className="text-2xl font-bold mb-4 text-theme-color1">1-Week Courses</h2>
+          {courses.oneWeek.map((course, index) => (
+            <CourseTile
+              key={index}
+              title={course.title}
+              duration={course.duration}
+              description={course.description}
+              outcomes={course.outcomes}
+              topics={course.topics}
+              isOpen={openCourse === course.title}
+              onClick={() => handleTileClick(course.title)}
+              nextStartDate={course.nextStartDate}
+            />
+          ))}
+        </section>
 
-      <section id="twelve-week" className="mb-12 bg-gray-100 p-6 rounded border">
-        <h2 className="text-2xl font-bold mb-4 text-green">12-Week Courses</h2>
-        {courses.twelveWeek.map((course, index) => (
-          <CourseTile
-            key={index}
-            title={course.title}
-            duration={course.duration}
-            description={course.description}
-            outcomes={course.outcomes}
-            topics={course.topics}
-            isOpen={openCourse === course.title}
-            onClick={() => handleTileClick(course.title)}
-            nextStartDate={course.nextStartDate}
-          />
-        ))}
-      </section>
+        <section id="six-week" className="mb-12 bg-gray-100 p-6 rounded border">
+          <h2 className="text-2xl font-bold mb-4 text-theme-color1">6-Week Courses</h2>
+          {courses.sixWeek.map((course, index) => (
+            <CourseTile
+              key={index}
+              title={course.title}
+              duration={course.duration}
+              description={course.description}
+              outcomes={course.outcomes}
+              topics={course.topics}
+              isOpen={openCourse === course.title}
+              onClick={() => handleTileClick(course.title)}
+              nextStartDate={course.nextStartDate}
+            />
+          ))}
+        </section>
 
-      <section id="twenty-four-week" className="mb-12 bg-gray-100 p-6 rounded border">
-        <h2 className="text-2xl font-bold mb-4 text-green">24-Week Bootcamps</h2>
-        {courses.twentyFourWeek.map((course, index) => (
-          <CourseTile
-            key={index}
-            title={course.title}
-            duration={course.duration}
-            description={course.description}
-            outcomes={course.outcomes}
-            topics={course.topics}
-            isOpen={openCourse === course.title}
-            onClick={() => handleTileClick(course.title)}
-            nextStartDate={course.nextStartDate}
-          />
-        ))}
-      </section>
+        <section id="twelve-week" className="mb-12 bg-gray-100 p-6 rounded border">
+          <h2 className="text-2xl font-bold mb-4 text-theme-color1">12-Week Courses</h2>
+          {courses.twelveWeek.map((course, index) => (
+            <CourseTile
+              key={index}
+              title={course.title}
+              duration={course.duration}
+              description={course.description}
+              outcomes={course.outcomes}
+              topics={course.topics}
+              isOpen={openCourse === course.title}
+              onClick={() => handleTileClick(course.title)}
+              nextStartDate={course.nextStartDate}
+            />
+          ))}
+        </section>
+
+        <section id="twenty-four-week" className="mb-12 bg-gray-100 p-6 rounded border">
+          <h2 className="text-2xl font-bold mb-4 text-theme-color1">24-Week Bootcamps</h2>
+          {courses.twentyFourWeek.map((course, index) => (
+            <CourseTile
+              key={index}
+              title={course.title}
+              duration={course.duration}
+              description={course.description}
+              outcomes={course.outcomes}
+              topics={course.topics}
+              isOpen={openCourse === course.title}
+              onClick={() => handleTileClick(course.title)}
+              nextStartDate={course.nextStartDate}
+            />
+          ))}
+        </section>
+      </div>
+
+      {isCalendarOpen && (
+        <div className="flex-1 md:pl-12">
+          <h2 className="text-2xl font-bold mb-4 text-theme-color1">Course Calendar</h2>
+          <Calendar onChange={handleDateChange} value={selectedDate} />
+        </div>
+      )}
     </div>
   );
 };
