@@ -6,6 +6,7 @@ import HomePage from './components/HomePage';
 import CoursesPage from './components/CoursesPage';
 import AboutPage from './components/AboutPage';
 import ContactPage from './components/ContactPage';
+import './styles/global.css';
 
 const App = () => {
   return (

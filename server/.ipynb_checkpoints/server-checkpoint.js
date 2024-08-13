@@ -20,8 +20,8 @@ app.post('/send-email', (req, res) => {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: info@aitechinstitute.io,
-      pass: eoti bfkk cxaa cdrq
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS
     }
   });
 

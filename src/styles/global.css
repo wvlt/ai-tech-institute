@@ -1,0 +1,4 @@
+/* src/styles/global.css */
+body {
+  @apply text-black;
+}

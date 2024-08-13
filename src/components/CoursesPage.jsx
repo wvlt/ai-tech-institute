@@ -123,7 +123,7 @@ const CoursesPage = () => {
   return (
     <div className="container mx-auto px-6 py-12">
       <h1 className="text-3xl font-bold mb-4 text-green">Courses</h1>
-      <p className="text-md mb-6 text-green">Explore our courses and choose the one that best fits your needs.</p>
+      <p className="text-md mb-6 text-black">Explore our courses and choose the one that best fits your needs.</p>
 
       <section id="one-day" className="mb-12 bg-gray-100 p-6 rounded border">
         <h2 className="text-2xl font-bold mb-4 text-green">1-Day Courses</h2>
