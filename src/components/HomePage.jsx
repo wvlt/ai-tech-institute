@@ -1,13 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import image1 from '../assets/FAN2016674.JPG';
 
 const HomePage = () => {
+  const [displayText, setDisplayText] = useState('');
+  const fullText = 'Find the best AI courses for your next leap...';
+
+  useEffect(() => {
+    let index = 0;
+    const intervalId = setInterval(() => {
+      setDisplayText((prev) => prev + fullText[index]);
+      index++;
+      if (index === fullText.length) {
+        clearInterval(intervalId);
+      }
+    }, 50); // Reduced interval time to 50ms for a faster typing effect
+    return () => clearInterval(intervalId);
+  }, []);
+
   return (
     <div className="container mx-auto px-6 py-12 text-center">
       <section className="hero-section bg-theme-color1 text-white py-20">
-        <h1 className="text-5xl font-bold mb-4">Find the best AI courses for your next leap</h1>
-        <p className="text-lg mb-8">A curated directory of courses and resources for building AI skills.</p>
+        <h1 className="text-5xl font-bold mb-4">{displayText}</h1>
+        <p className="text-lg mb-8">Professional AI Builders Teaching You How to Build...</p>
         <Link to="/contact">
           <button className="bg-white text-theme-color1 px-6 py-3 rounded hover:bg-theme-color2 hover:text-theme-color1">Get Started</button>
         </Link>
@@ -17,11 +32,11 @@ const HomePage = () => {
         <h2 className="text-4xl font-semibold text-theme-color3 mb-6">Our Courses</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <Link to="/courses#one-day" className="block p-6 bg-white rounded shadow-md transform hover:scale-102 transition-transform duration-200">
-            <h3 className="text-2xl font-bold text-theme-color1 mb-2">1-Day Courses</h3>
+            <h3 className="text-2xl font-bold text-theme-color1 mb-2">1-Day Crash Courses</h3>
             <p className="text-theme-color3">Intensive one-day sessions.</p>
           </Link>
           <Link to="/courses#one-week" className="block p-6 bg-white rounded shadow-md transform hover:scale-102 transition-transform duration-200">
-            <h3 className="text-2xl font-bold text-theme-color1 mb-2">1-Week Courses</h3>
+            <h3 className="text-2xl font-bold text-theme-color1 mb-2">1-Week In-depth Courses</h3>
             <p className="text-theme-color3">Comprehensive one-week programs.</p>
           </Link>
           <Link to="/courses#six-week" className="block p-6 bg-white rounded shadow-md transform hover:scale-102 transition-transform duration-200">
@@ -29,7 +44,7 @@ const HomePage = () => {
             <p className="text-theme-color3">Accelerated learning.</p>
           </Link>
           <Link to="/courses#twelve-week" className="block p-6 bg-white rounded shadow-md transform hover:scale-102 transition-transform duration-200">
-            <h3 className="text-2xl font-bold text-theme-color1 mb-2">12-Week Skill-ups</h3>
+            <h3 className="text-2xl font-bold text-theme-color1 mb-2">12-Week Advance Skills</h3>
             <p className="text-theme-color3">Advance your AI skills.</p>
           </Link>
           <Link to="/courses#twenty-four-week" className="block p-6 bg-white rounded shadow-md transform hover:scale-102 transition-transform duration-200">
@@ -54,7 +69,7 @@ const HomePage = () => {
             <li><strong>Hybrid:</strong> Enjoy the best of both worlds with our hybrid model, combining online and in-person sessions.</li>
           </ul>
           <p className="text-lg text-theme-color3 mt-4">
-            Our goal is to provide a flexible and supportive learning environment that meets the needs of all our students.
+            We provide a flexible and supportive learning environment that meets the needs of all our students.
           </p>
         </div>
       </section>
