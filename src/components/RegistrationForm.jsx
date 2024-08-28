@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import emailjs from 'emailjs-com';
 
 const RegistrationForm = ({ selectedCourse }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
     course: selectedCourse || '',
     message: ''
   });
@@ -17,17 +18,19 @@ const RegistrationForm = ({ selectedCourse }) => {
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setFormStatus('Sending...');
 
-    try {
-      await axios.post('http://localhost:5001/send-email', formData);
-      setFormStatus('Enquiry sent successfully!');
-    } catch (error) {
-      console.error('Error sending email:', error);
-      setFormStatus('There was an error sending your enquiry. Please send us an email instead info@aitechinstitute.io');
-    }
+    // EmailJS configuration
+    emailjs.send('service_ii7ap3b', 'template_yve428c', formData, 'tf8sbyXSln9qtQFSQ')
+      .then((result) => {
+        console.log(result.text);
+        setFormStatus('Enquiry sent successfully!');
+      }, (error) => {
+        console.error('Error sending email:', error);
+        setFormStatus('There was an error sending your enquiry. Please send us an email instead: info@aitechinstitute.io');
+      });
   };
 
   return (
@@ -35,7 +38,7 @@ const RegistrationForm = ({ selectedCourse }) => {
       <h2 className="text-2xl font-bold mb-4">Register Your Interest</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
-          <label className="block text-green font-bold mb-2" htmlFor="name">Name</label>
+          <label className="block text-green font-bold mb-2" htmlFor="name">Name <span className="text-red-500">*</span></label>
           <input
             type="text"
             name="name"
@@ -47,12 +50,24 @@ const RegistrationForm = ({ selectedCourse }) => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-green font-bold mb-2" htmlFor="email">Email</label>
+          <label className="block text-green font-bold mb-2" htmlFor="email">Email <span className="text-red-500">*</span></label>
           <input
             type="email"
             name="email"
             id="email"
             value={formData.email}
+            onChange={handleChange}
+            className="w-full px-3 py-2 border rounded"
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-green font-bold mb-2" htmlFor="phone">Phone Number <span className="text-red-500">*</span></label>
+          <input
+            type="tel"
+            name="phone"
+            id="phone"
+            value={formData.phone}
             onChange={handleChange}
             className="w-full px-3 py-2 border rounded"
             required
@@ -66,7 +81,6 @@ const RegistrationForm = ({ selectedCourse }) => {
             value={formData.course}
             onChange={handleChange}
             className="w-full px-3 py-2 border rounded"
-            required
           >
             <option value="">Select a course</option>
             <option value="24-Week Bootcamps">24-Week Bootcamps</option>
@@ -85,10 +99,13 @@ const RegistrationForm = ({ selectedCourse }) => {
             value={formData.message}
             onChange={handleChange}
             className="w-full px-3 py-2 border rounded"
-            required
           />
         </div>
-        <button type="submit" className="bg-green text-white px-4 py-2 rounded hover:bg-yellowCream hover:text-green">Send Enquiry</button>
+        <button 
+          type="submit" 
+          className="bg-theme-color1 text-white px-4 py-2 rounded hover:bg-theme-color2 hover:text-theme-color1">
+          Send Enquiry
+        </button>
       </form>
       {formStatus && <p className="mt-4 text-green">{formStatus}</p>}
     </div>
