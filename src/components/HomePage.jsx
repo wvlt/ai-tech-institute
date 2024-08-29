@@ -1,27 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import Typical from 'react-typical';
 import image1 from '../assets/FAN2016674.JPG';
 
 const HomePage = () => {
-  const [displayText, setDisplayText] = useState('');
-  const fullText = 'Find the best AI courses for your next leap...';
-
-  useEffect(() => {
-    let index = 0;
-    const intervalId = setInterval(() => {
-      setDisplayText((prev) => prev + fullText[index]);
-      index++;
-      if (index === fullText.length) {
-        clearInterval(intervalId);
-      }
-    }, 50); // Reduced interval time to 50ms for a faster typing effect
-    return () => clearInterval(intervalId);
-  }, []);
-
   return (
     <div className="container mx-auto px-6 py-12 text-center">
       <section className="hero-section bg-theme-color1 text-white py-20">
-        <h1 className="text-5xl font-bold mb-4">{displayText}</h1>
+        <h1 className="text-5xl font-bold mb-4">
+          <div className="typing-effect">
+            <Typical
+              steps={[
+                'Find the best AI courses for your next leap...', 2000, // 2000ms pause after finishing the text
+                '',
+                'Find the best AI courses for your next leap...',
+              ]}
+              loop={1} // You can set it to `Infinity` if you want it to keep looping
+              wrapper="span"
+            />
+          </div>
+        </h1>
         <p className="text-lg mb-8">Professional AI Builders Teaching You How to Build...</p>
         <Link to="/contact">
           <button className="bg-white text-theme-color1 px-6 py-3 rounded hover:bg-theme-color2 hover:text-theme-color1">Get Started</button>

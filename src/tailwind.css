@@ -13,3 +13,10 @@ html, body, #root {
 body {
   font-family: 'Roboto', sans-serif;
 }
+
+/* Hide typing effect on small screens */
+@media (max-width: 640px) {
+  .typing-effect {
+    display: none;
+  }
+}
