@@ -1,26 +1,27 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import HomePage from './components/HomePage';
-import CoursesPage from './components/CoursesPage';
-import AboutPage from './components/AboutPage';
-import ContactPage from './components/ContactPage';
-import './styles/global.css';
+import KidsLayout from './components/KidsLayout';
+import KidsHome from './components/KidsHome';
+import KidsCoding from './components/KidsCoding';
+import KidsRobotics from './components/KidsRobotics';
+import KidsUpcoming from './components/KidsUpcoming';
+import KidsAbout from './components/KidsAbout';
+import KidsCareers from './components/KidsCareers';
 
 const App = () => {
   return (
     <Router>
-      <Header />
-      <main className="pt-16 flex-grow">
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/courses" element={<CoursesPage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-        </Routes>
-      </main>
-      <Footer />
+      <Routes>
+        {/* Kids Pages */}
+        <Route path="/kids-programs/*" element={<KidsLayout />}>
+          <Route index element={<KidsHome />} />
+          <Route path="coding" element={<KidsCoding />} />
+          <Route path="robotics" element={<KidsRobotics />} />
+          <Route path="upcoming" element={<KidsUpcoming />} />
+          <Route path="about" element={<KidsAbout />} />
+          <Route path="careers" element={<KidsCareers />} />
+        </Route>
+      </Routes>
     </Router>
   );
 };
